@@ -15,11 +15,12 @@ export const generateToken = (res, user) => {
 
     // Set the token in an HTTP-only cookie
     res.cookie("token", token, {
-        httpOnly: true, // Prevents client-side JavaScript from accessing it
-        secure: true, // Uses HTTPS in production
-        sameSite: "None", // Prevents CSRF attacks
-        maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days expiration
-    });
+          httpOnly: true,
+                expires: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000),
+                // secure: true,
+                secure: false,
+                sameSite: "lax"
+    }); 
 
     return token;
 };
